@@ -1,0 +1,19 @@
+#json{
+    margin: 5% 45% 0 45%;
+    width: 10%;
+}
+#box{
+    width: 95%;
+    margin: 1% 1% 0 2%;
+    height: 77vh;
+    overflow: hidden scroll;
+}
+td {
+    padding: 10px;
+}
+#box1{
+    margin-left: 2%;
+}
+table{
+    width: 100%;
+}

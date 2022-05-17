@@ -18,6 +18,7 @@ function getSql($lekeres,$insert){
         if ($result) {
             if ($result->num_rows > 0) {
                 while ($row = mysqli_fetch_array($result)) {
+
                     $rows[] = $row;
                 }
             } else {
@@ -29,6 +30,7 @@ function getSql($lekeres,$insert){
     }
 
 }
+
 if(isset($_GET["init_sql_json"])){
 
     getSql('CREATE DATABASE IF NOT EXITS exam_score','');
@@ -101,13 +103,16 @@ ENCLOSED BY '\"'
 ESCAPED BY '\\'
 LINES TERMINATED BY '/n'
 IGNORE 1 ROWS;","");
-  echo  "LOAD DATA INFILE '".$path."'
-INTO TABLE People
-FIELDS TERMINATED BY ','
-ENCLOSED BY '\"'
-ESCAPED BY '\\\\'
-LINES TERMINATED BY '/n'
-IGNORE 1 ROWS;";
 
     echo json_encode(getSql('SELECT * from People','query'));
+}
+if(isset($_GET['query'])){
+
+    $re = getSql($_GET['query'],'query');
+
+    if(count($re)>0){
+    echo json_encode($re);
+    }else{
+    echo json_encode([]);
+    }
 }
